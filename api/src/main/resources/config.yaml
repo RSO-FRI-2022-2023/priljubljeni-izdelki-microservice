@@ -1,0 +1,27 @@
+kumuluzee:
+  name: priljubljeni-izdelki-service
+  version: 1.0.0
+  env:
+    name: dev
+  server:
+    http:
+      port: 8082
+  datasources:
+  - jndi-name: jdbc/IzdelkiDS
+    connection-url: jdbc:postgresql://localhost:5432/izdelki
+    #connection-url: jdbc:postgresql://34.118.85.117:5432/rso
+    #connection-url: jdbc:postgresql://host.docker.internal:5432/izdelki
+    username: rso
+    password: rso
+#  health:
+#    checks:
+#      data-source-health-check:
+#        jndi-name: jdbc/IzdelkiDS
+#        type: liveness
+#      disk-space-health-check:
+#        threshold: 100000000
+#  metrics:
+#    web-instrumentation:
+#      - name: priljubljeni-izdelki-endpoint
+#        url-pattern: /v1/priljubljeni-izdelki/*
+

@@ -41,7 +41,6 @@
         <dependency>
             <groupId>si.fri.rso.zddt.priljubljeni_izdelki</groupId>
             <artifactId>priljubljeni-izdelki-models</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
     </dependencies>

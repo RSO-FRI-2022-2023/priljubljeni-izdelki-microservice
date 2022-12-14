@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: priljubljeni-izdelki-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: priljubljeni-izdelki-service
+  template:
+    metadata:
+      labels:
+        app: priljubljeni-izdelki-service
+    spec:
+      containers:
+        - image: zigadrab/rso-priljubljeni-izdelki-service
+          name: priljubljeni-izdelki-service
+          env:
+            - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
+              value: jdbc:postgresql://34.118.85.117:5432/rso
+            - name: KUMULUZEE_DATASOURCES0_USERNAME
+              value: rso
+            - name: KUMULUZEE_DATASOURCES0_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: KUMULUZEE_DATASOURCES0_PASSWORD
+          ports:
+            - containerPort: 8082
+              name: server
+              protocol: TCP
+
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: server
+            initialDelaySeconds: 20
+            periodSeconds: 3
+            readinessProbe:
+              httpGet:
+                path: /health/ready
+                port: server
+              initialDelaySeconds: 20
+              periodSeconds: 3
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: priljubljeni-izdelki-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8082
+      protocol: TCP
+      targetPort: server
+  selector:
+    app: priljubljeni-izdelki-service
