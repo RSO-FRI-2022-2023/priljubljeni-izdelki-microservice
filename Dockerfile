@@ -7,8 +7,8 @@ FROM stage-${TARGETARCH} as final
 
 WORKDIR /app
 
-ADD ./api/target/priljubljeni-izdelki-api-1.0.0-SNAPSHOT.jar /app
+ADD ./api/target/priljubljeni-izdelki-api-1.0-SNAPSHOT.jar /app
 
 EXPOSE 8082
 
-CMD ["java", "-jar", "priljubljeni-izdelki-api-1.0.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "priljubljeni-izdelki-api-1.0-SNAPSHOT.jar"]

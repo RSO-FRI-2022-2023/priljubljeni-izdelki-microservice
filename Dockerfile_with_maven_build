@@ -11,6 +11,6 @@ ARG TARGETARCH
 FROM stage-${TARGETARCH} as final
 
 WORKDIR /app
-COPY --from=build ./app/api/target/priljubljeni-izdelki-api-1.0.0-SNAPSHOT.jar /app
+COPY --from=build ./app/api/target/priljubljeni-izdelki-api-1.0-SNAPSHOT.jar /app
 EXPOSE 8082
-CMD ["java", "-jar", "priljubljeni-izdelki-api-1.0.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "priljubljeni-izdelki-api-1.0-SNAPSHOT.jar"]
