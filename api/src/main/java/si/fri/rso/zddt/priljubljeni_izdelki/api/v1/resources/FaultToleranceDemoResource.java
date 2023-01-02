@@ -1,5 +1,6 @@
 package si.fri.rso.zddt.priljubljeni_izdelki.api.v1.resources;
 import com.kumuluz.ee.cors.annotations.CrossOrigin;
+import com.kumuluz.ee.logs.cdi.Log;
 import si.fri.rso.zddt.common.models.PriljubljenIzdelek;
 import si.fri.rso.zddt.priljubljeni_izdelki.services.beans.PriljubljenIzdelekBean;
 import si.fri.rso.zddt.priljubljeni_izdelki.services.config.RestProperties;
@@ -14,6 +15,7 @@ import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
 @ApplicationScoped
+@Log
 @Path("fault-tolerance")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
