@@ -26,6 +26,7 @@ public class PriljubljenIzdelekBean {
     public List<PriljubljenIzdelek> vrniPriljubljeneIzdelke() {
         Query q = em.createNamedQuery("PriljubljenIzdelek.getAll");
         List<PriljubljenIzdelek> resultSet = (List<PriljubljenIzdelek>) q.getResultList();
+        log.info("Vračam priljubljene izdelke");
         return resultSet;
     }
 

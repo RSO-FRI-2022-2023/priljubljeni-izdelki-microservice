@@ -21,8 +21,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
+import com.kumuluz.ee.logs.cdi.Log;
 
 @ApplicationScoped
+@Log
 @Path("priljubljeni")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
