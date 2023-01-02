@@ -1,16 +1,8 @@
 package si.fri.rso.zddt.priljubljeni_izdelki.api.v1.resources;
 import com.kumuluz.ee.cors.annotations.CrossOrigin;
-import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.media.Content;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
-import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
-import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
-import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
-import si.fri.rso.zddt.common.models.Izdelek;
 import si.fri.rso.zddt.common.models.PriljubljenIzdelek;
-import si.fri.rso.zddt.priljubljeni_izdelki.services.DTOs.PriljubljenIzdelekDTO;
 import si.fri.rso.zddt.priljubljeni_izdelki.services.beans.PriljubljenIzdelekBean;
+import si.fri.rso.zddt.priljubljeni_izdelki.services.config.RestProperties;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -35,8 +27,36 @@ public class FaultToleranceDemoResource {
     private PriljubljenIzdelekBean priljubljenIzdelekBean;
 
     @GET
-    public Response vrniSteviloPriljubljenihIzdelkov() {
-        List<PriljubljenIzdelek> priljubljenIzdelki = priljubljenIzdelekBean.vrniPriljubljeneIzdelke();
+    @Path("fallback")
+    public Response fault_tolerance_fallback_demo() {
+        List<PriljubljenIzdelek> priljubljenIzdelki = priljubljenIzdelekBean.vrniPriljubljeneIzdelke_fault_tolerance_fallback();
         return Response.status(Response.Status.OK).entity(priljubljenIzdelki.size()).build();
+    }
+    @GET
+    @Path("circuit-breaker")
+    public Response fault_tolerance_circuit_breaker_timeout_demo() {
+        List<PriljubljenIzdelek> priljubljenIzdelki = priljubljenIzdelekBean.vrniPriljubljeneIzdelke_fault_tolerance_circuit_and_timeout();
+        return Response.status(Response.Status.OK).entity(priljubljenIzdelki.size()).build();
+    }
+
+    @Inject
+    private RestProperties restProperties;
+
+    @POST
+    @Path("simulate")
+    public Response test() {
+
+        restProperties.setSimulation(true);
+
+        return Response.status(Response.Status.OK).build();
+    }
+
+    @POST
+    @Path("normal")
+    public Response normal() {
+
+        restProperties.setSimulation(false);
+
+        return Response.status(Response.Status.OK).build();
     }
 }

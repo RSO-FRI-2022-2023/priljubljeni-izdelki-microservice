@@ -39,6 +39,20 @@
             <artifactId>kumuluzee-metrics-core</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.kumuluz.ee.fault.tolerance</groupId>
+            <artifactId>kumuluzee-fault-tolerance-smallrye</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>si.fri.rso.zddt.priljubljeni_izdelki</groupId>
             <artifactId>priljubljeni-izdelki-models</artifactId>
         </dependency>

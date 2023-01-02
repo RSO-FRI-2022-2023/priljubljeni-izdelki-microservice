@@ -44,4 +44,5 @@ kumuluzee:
     web-instrumentation:
       - name: priljubljeni-izdelki-endpoint
         url-pattern: /v1/priljubljeni-izdelki/*
-
+rest-properties:
+  simulation: false
